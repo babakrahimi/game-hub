@@ -16,16 +16,11 @@ function App() {
         <NavBar />
       </GridItem>
 
-      <GridItem area="main" bg="green.500" p={4} color="white">
+      <GridItem area="main" p={4} color="white">
         Main Content
       </GridItem>
 
-      <GridItem
-        area="aside"
-        display={{ base: "none", lg: "block" }}
-        bg="gray.200"
-        p={4}
-      >
+      <GridItem area="aside" display={{ base: "none", lg: "block" }} p={4}>
         Sidebar
       </GridItem>
     </Grid>

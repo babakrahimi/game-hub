@@ -24,7 +24,7 @@ function GenreList({ onSelectGenre, selectedGenre }: GenreListProps) {
   return (
     <List>
       {data.map((genre) => (
-        <ListItem key={genre.id} marginBottom={2}>
+        <ListItem key={genre.id} marginBottom={3}>
           <HStack>
             <Image
               boxSize="32px"
@@ -34,7 +34,7 @@ function GenreList({ onSelectGenre, selectedGenre }: GenreListProps) {
             <Button
               onClick={() => onSelectGenre(genre)}
               variant="link"
-              fontSize="lg"
+              fontSize="md"
               fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
             >
               {genre.name}

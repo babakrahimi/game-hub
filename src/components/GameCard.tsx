@@ -23,14 +23,16 @@ function GameCard({ game }: GameCardProps) {
         borderTopRadius={10}
       />
       <CardBody display="flex" flexDirection="column">
-        <Heading fontSize="xl">{game.name}</Heading>
-        <Spacer />
-        <HStack justifyContent="space-between" mt={3}>
+        <HStack justifyContent="space-between">
           <PlatformIconList
             platforms={game.parent_platforms.map((icon) => icon.platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>
+        <Spacer />
+        <Heading fontSize="xl" mt={3}>
+          {game.name}
+        </Heading>
       </CardBody>
     </Card>
   );

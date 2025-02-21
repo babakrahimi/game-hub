@@ -12,10 +12,10 @@ import {
 
 interface GenreListProps {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-function GenreList({ onSelectGenre, selectedGenre }: GenreListProps) {
+function GenreList({ onSelectGenre, selectedGenreId }: GenreListProps) {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -43,7 +43,7 @@ function GenreList({ onSelectGenre, selectedGenre }: GenreListProps) {
                 fontSize="md"
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
               >
                 {genre.name}
               </Button>

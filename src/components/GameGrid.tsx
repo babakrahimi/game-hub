@@ -12,14 +12,8 @@ interface GameGridProps {
 }
 
 function GameGrid({ gameQuery }: GameGridProps) {
-  const {
-    data,
-    error,
-    isLoading,
-    isFetchingNextPage,
-    fetchNextPage,
-    hasNextPage,
-  } = useGames(gameQuery);
+  const { data, error, isLoading, fetchNextPage, hasNextPage } =
+    useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   const bgColor = useColorModeValue("gray.100", "gray.700");

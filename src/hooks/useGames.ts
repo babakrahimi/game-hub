@@ -1,6 +1,7 @@
 import { GameQuery } from "@/App";
 import APIClient, { FetchResponse } from "@/services/apiClient";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
 import { Platform } from "./usePlatforms";
 
 const apiClient = new APIClient<Game>("/games");
@@ -27,7 +28,7 @@ const useGames = (gameQuery: GameQuery) =>
           page: pageParam,
         },
       }),
-    staleTime: 10 * 60 * 1000, // 10 minutes
+    staleTime: ms("24h"),
     retry: 2,
     onError: (error) => {
       console.error("Error fetching games:", error);

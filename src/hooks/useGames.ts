@@ -1,6 +1,6 @@
 import { GameQuery } from "@/App";
 import APIClient, { FetchResponse } from "@/services/apiClient";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { Platform } from "./usePlatforms";
 
 const apiClient = new APIClient<Game>("/games");
@@ -15,21 +15,25 @@ export interface Game {
 }
 
 const useGames = (gameQuery: GameQuery) =>
-  useQuery<FetchResponse<Game>, Error>({
+  useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery],
-    queryFn: () =>
+    queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
           genres: gameQuery.genre?.id,
           parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
+          page: pageParam,
         },
       }),
     staleTime: 10 * 60 * 1000, // 10 minutes
-    retry: 2, // ✅ Retry twice before failing
+    retry: 2,
     onError: (error) => {
       console.error("Error fetching games:", error);
+    },
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.next ? allPages.length + 1 : undefined;
     },
   });
 

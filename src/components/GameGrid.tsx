@@ -1,9 +1,9 @@
-import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
-import useGames from "@/hooks/useGames";
-import GameCard from "./GameCard";
-import GameCardSkeleton from "./GameCardSkeleton";
-import GameCardContainer from "./GameCardContainer";
 import { GameQuery } from "@/App";
+import useGames from "@/hooks/useGames";
+import { Box, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import GameCard from "./GameCard";
+import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
 
 interface GameGridProps {
   gameQuery: GameQuery;
@@ -25,10 +25,10 @@ function GameGrid({ gameQuery }: GameGridProps) {
         borderRadius="md"
         textAlign="center"
       >
-        {error}
+        {error.message}
       </Box>
     );
-  if (!isLoading && data.length === 0)
+  if (!isLoading && data?.results.length === 0)
     return (
       <Box
         p={6}
@@ -51,7 +51,7 @@ function GameGrid({ gameQuery }: GameGridProps) {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {data.map((game) => (
+      {data?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />
         </GameCardContainer>

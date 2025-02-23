@@ -1,4 +1,3 @@
-import { GameQuery } from "@/App";
 import useGames from "@/hooks/useGames";
 import { Box, SimpleGrid, Spinner, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
@@ -7,13 +6,8 @@ import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-interface GameGridProps {
-  gameQuery: GameQuery;
-}
-
-function GameGrid({ gameQuery }: GameGridProps) {
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useGames(gameQuery);
+function GameGrid() {
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   const bgColor = useColorModeValue("gray.100", "gray.700");

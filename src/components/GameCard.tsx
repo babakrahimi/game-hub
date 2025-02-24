@@ -1,4 +1,5 @@
 import { Game } from "@/hooks/useGames";
+import getCroppedImageUrl from "@/services/image-url";
 import {
   Card,
   CardBody,
@@ -7,10 +8,10 @@ import {
   Image,
   Spacer,
 } from "@chakra-ui/react";
-import PlatformIconList from "./PlatformIconList";
+import { Link } from "react-router-dom";
 import CriticScore from "./CriticScore";
-import getCroppedImageUrl from "@/services/image-url";
 import Emoji from "./Emoji";
+import PlatformIconList from "./PlatformIconList";
 
 interface GameCardProps {
   game: Game;
@@ -18,7 +19,18 @@ interface GameCardProps {
 
 function GameCard({ game }: GameCardProps) {
   return (
-    <Card h="full">
+    <Card
+      as={Link}
+      to={`/games/${game.id}`}
+      h="full"
+      _hover={{
+        transform: "scale(1.05)",
+        transition: "0.2s ease-in-out",
+        shadow: "lg",
+      }}
+      borderRadius={10}
+      overflow="hidden"
+    >
       <Image
         src={getCroppedImageUrl(game.background_image)}
         borderTopRadius={10}

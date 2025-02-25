@@ -1,6 +1,7 @@
 import CriticScore from "@/components/CriticScore";
 import DefinitionItem from "@/components/DefinitionItem";
 import GameAttributes from "@/components/GameAttributes";
+import GameScreenshots from "@/components/GameScreenshots";
 import GameTrailer from "@/components/GameTrailer";
 import useGame from "@/hooks/useGame";
 import {
@@ -57,6 +58,7 @@ function GameDetailPage() {
           {game.description_raw}
         </Text>
         <GameAttributes game={game} />
+        <GameScreenshots gameId={game.id} />
         <GameTrailer gameId={game.id} />
       </VStack>
     </Box>

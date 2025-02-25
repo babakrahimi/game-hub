@@ -1,3 +1,6 @@
+import CriticScore from "@/components/CriticScore";
+import DefinitionItem from "@/components/DefinitionItem";
+import GameAttributes from "@/components/GameAttributes";
 import useGame from "@/hooks/useGame";
 import {
   Box,
@@ -5,6 +8,7 @@ import {
   Divider,
   Heading,
   Image,
+  SimpleGrid,
   Spinner,
   Text,
   VStack,
@@ -51,6 +55,7 @@ function GameDetailPage() {
         <Text fontSize="lg" lineHeight="tall">
           {game.description_raw}
         </Text>
+        <GameAttributes game={game} />
       </VStack>
     </Box>
   );
